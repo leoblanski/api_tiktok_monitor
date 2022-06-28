@@ -15,5 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/testDb', [MovimentController::class, 'save']);
-Route::get('/saveMoviment', [MovimentController::class, 'save']);
+Route::post('/saveMoviment', [MovimentController::class, 'save']);
