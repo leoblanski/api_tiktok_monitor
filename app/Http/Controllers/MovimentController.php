@@ -12,7 +12,7 @@ class MovimentController extends Controller
     public function save(Request $request)
     {
         try {
-            $params = $request->post('params');
+            $params = $request->post();
 
             if (!$params) {
                 throw new Exception("params is required");
@@ -23,9 +23,12 @@ class MovimentController extends Controller
             $moviment->qty_gift = $params['qty_gift'];
             $moviment->amount = $params['amount'];
 
-            if (!$moviment->save) {
+            if (!$moviment->save()) {
                 throw new Exception("Parameters not saved");
             }
+
+            $response['status']  = 'success';
+            $response['message'] = 'Movimentação registrada com sucesso. ID: '.$moviment->id;
 
         } catch (Exception $e) {
             $response = [];
@@ -34,5 +37,6 @@ class MovimentController extends Controller
 
             return response()->json($response)->setStatusCode(400);
         }
+        return response()->json($response);
     }
 }
