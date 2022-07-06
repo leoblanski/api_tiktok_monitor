@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/saveMoviment', [MovimentController::class, 'save']);
+Route::get('/getMoviment', [MovimentController::class, 'get']);

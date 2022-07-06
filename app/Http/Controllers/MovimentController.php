@@ -39,4 +39,14 @@ class MovimentController extends Controller
         }
         return response()->json($response);
     }
+
+    public function get(Request $request) {
+        // $filters = $request->post();
+
+        $moviments = Moviment::query()->get()->toArray();
+
+        $response['data'] = $moviments;
+
+        return response()->json($response);
+    }
 }
