@@ -20,10 +20,11 @@
             </div>
         </nav>
          <div id="app">
-            <PanelPicture/>
+            
         </div>
     </body>
 </html>
 
+<?= asset('/js/app.js')?>
 <!-- Vue -->
-<script src="<?= mix('/js/app.js') ?>"></script>
+<script type="module" src="<?php echo asset('js/app.js') ?>">

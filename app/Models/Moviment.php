@@ -8,5 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class Moviment extends Model
 {   
     protected $table = 'moviment';
-
 }
