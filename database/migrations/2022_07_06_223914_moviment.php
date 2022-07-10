@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('moviment', function (Blueprint $table) {
             $table->id();
             $table->string('username');
+            $table->string('url_picture');
             $table->string('qty_gift');
             $table->string('amount');
             $table->integer('type');
