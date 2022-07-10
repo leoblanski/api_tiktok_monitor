@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('username');
             $table->string('qty_gift');
             $table->string('amount');
+            $table->integer('type');
+            $table->date('created_at');
+            $table->date('updated_at');
         });
     }
 

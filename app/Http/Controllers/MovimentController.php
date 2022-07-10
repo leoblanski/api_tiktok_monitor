@@ -22,6 +22,7 @@ class MovimentController extends Controller
             $moviment->username = $params['username'];
             $moviment->qty_gift = $params['qty_gift'];
             $moviment->amount = $params['amount'];
+            $moviment->type = $params['type'];
 
             if (!$moviment->save()) {
                 throw new Exception("Parameters not saved");
