@@ -5380,16 +5380,19 @@ __webpack_require__.r(__webpack_exports__);
       loading: true
     };
   },
-  beforeMount: function beforeMount() {
-    console.log("Component mounted.");
-    axios.get("http://0.0.0.0:8000/api/getMoviment").then(function (response) {
-      this.list = response.data;
-    })["catch"](function (error) {
-      console.log(error);
-    });
-  },
   created: function created() {
-    console.log(this.list);
+    this.getData();
+  },
+  methods: {
+    getData: function getData() {
+      var _this = this;
+
+      axios.get("http://0.0.0.0:8000/api/getMoviment").then(function (response) {
+        _this.list = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
   }
 });
 
@@ -5410,8 +5413,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     list: {
       type: Array,
-      required: true // default: '../../images/bolsonaro.png'
-
+      required: true
     }
   },
   mounted: function mounted() {
@@ -5564,7 +5566,25 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div");
+  return _c("div", [_c("div", {}, [_c("div", {
+    staticClass: "list-header"
+  }, [_vm._v("\n          Patrocinadores da Live\n        ")]), _vm._v(" "), _c("div", {
+    staticClass: "list-body"
+  }, _vm._l(_vm.list, function (item) {
+    return _c("tr", {
+      key: item.id
+    }, [_c("div", {
+      staticClass: "col-md-4 list-tile"
+    }, [_c("img", {
+      staticClass: "rounded-circle shadow-lg p-2",
+      attrs: {
+        src: item.url_picture,
+        "data-holder-rendered": "true"
+      }
+    })]), _vm._v(" "), _c("td", [_vm._v(_vm._s(item.username))])]);
+  }), 0), _vm._v(" "), _c("div", {
+    staticClass: "list-header"
+  })])]);
 };
 
 var staticRenderFns = [];
@@ -10755,7 +10775,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.card_count {\n  margin-top: 10px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card_count {\n  margin-top: 10px;\n}\n.list-tile img{\n  width: 80px;\n  height: 80px;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
