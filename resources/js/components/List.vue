@@ -1,14 +1,7 @@
 <template>
-  <div class="row">
-    <img class="rounded" :src="img(image)" style="height: 80%" />
-    <div class="d-flex justify-content-center card_count">
-      <h1 style="color: red">10&thinsp;</h1>
-      <h1>votos</h1>
+    <div>
+        
     </div>
-    <div class="d-flex justify-content-center">
-      <h2>Digite "/{{ name }}" para votar</h2>
-    </div>
-  </div>
 </template>
 
 <style>
@@ -20,27 +13,14 @@
 <script>
 export default {
   props: {
-    image: {
-      type: String,
+    list: {
+      type: Array,
       required: true,
       // default: '../../images/bolsonaro.png'
     },
-    name: {
-      type: String,
-      required: true,
-    },
   },
   mounted() {
-    console.log("Component mounted.");
-
-    axios
-      .get("http://0.0.0.0:8000/api/getMoviment")
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(1);
-      });
+    console.log(this.list);
   },
 };
 </script>

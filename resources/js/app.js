@@ -3,6 +3,7 @@ window.Vue = require('vue').default;
 
 Vue.component('home', require('./components/Home.vue').default);
 Vue.component('panel-picture', require('./components/PanelPicture.vue').default);
+Vue.component('list', require('./components/List.vue').default);
 
 const pluginGetImage = {
     install(Vue, options) {

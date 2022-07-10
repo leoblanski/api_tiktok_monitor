@@ -33,16 +33,6 @@ export default {
     },
   },
   mounted() {
-    console.log("Component mounted.");
-
-    axios
-      .get("http://0.0.0.0:8000/api/getMoviment")
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(1);
-      });
   },
 };
 </script>
