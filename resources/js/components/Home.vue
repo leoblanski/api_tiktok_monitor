@@ -19,7 +19,7 @@
       </div>
       <br>
       <div class="row">
-        <list :list='list'/>
+        <list :list="list"/>
       </div>
     </div>
     <panel-picture name="Lula" image="lula.png" />
@@ -58,20 +58,20 @@ export default {
       loading: true,
     }
   },
-  beforeMount() {
-    console.log("Component mounted.");
-
-    axios
+  created() {
+    this.getData();
+  },
+  methods: {
+    getData() {
+      axios
       .get("http://0.0.0.0:8000/api/getMoviment")
-      .then(function (response) {
-        this.list = response.data;
-      })
+       .then(response =>{
+          this.list = response.data.data;
+        })
       .catch(function (error) {
         console.log(error);
       })
-  },
-  created() {
-    console.log(this.list);
+    }
   }
 };
 </script>
