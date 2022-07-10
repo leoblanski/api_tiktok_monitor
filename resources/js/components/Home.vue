@@ -17,6 +17,10 @@
           <h4>Reproduz meme do Lula</h4>
         </div>
       </div>
+      <br>
+      <div class="row">
+        <list :list='list'/>
+      </div>
     </div>
     <panel-picture name="Lula" image="lula.png" />
     <div class="col-md-1 duel">
@@ -48,17 +52,26 @@
 import PanelPicture from "./PanelPicture.vue";
 export default {
   components: { PanelPicture },
-  mounted() {
+  data () {
+    return {
+      list: [],
+      loading: true,
+    }
+  },
+  beforeMount() {
     console.log("Component mounted.");
 
     axios
       .get("http://0.0.0.0:8000/api/getMoviment")
       .then(function (response) {
-        console.log(response);
+        this.list = response.data;
       })
       .catch(function (error) {
-        console.log(1);
-      });
+        console.log(error);
+      })
   },
+  created() {
+    console.log(this.list);
+  }
 };
 </script>
