@@ -17,16 +17,19 @@
           <h4>Reproduz meme do Lula</h4>
         </div>
       </div>
-      <br>
+      <br />
       <div class="row">
-        <list :list="list"/>
+        <list title="Top 3 Patrocinadores" :list="listSponsors" />
+      </div>
+      <div class="row">
+        <list title="Top 3 Patrocinadores" :list="listVoutes" />
       </div>
     </div>
-    <panel-picture name="Lula" image="lula.png" />
+    <panel-picture name="Lula" image="lula.png" :qtyVotes="qtyFirst"/>
     <div class="col-md-1 duel">
       <img :src="img('x.png')" />
     </div>
-    <panel-picture name="Bolsonaro" image="bolsonaro.png" />
+    <panel-picture name="Bolsonaro" image="bolsonaro.png" :qtyVotes="qtySecond" />
   </div>
 </template>
 
@@ -52,26 +55,56 @@
 import PanelPicture from "./PanelPicture.vue";
 export default {
   components: { PanelPicture },
-  data () {
+  data() {
     return {
-      list: [],
+      listSponsors: [],
+      qtyFirst: 0,
+      qtySecond: 0,
+      listVoutes: [],
       loading: true,
-    }
+    };
   },
   created() {
-    this.getData();
+    this.getSponsors();
+    this.getVotes();
   },
   methods: {
-    getData() {
-      axios
-      .get("http://0.0.0.0:8000/api/getMoviment")
-       .then(response =>{
-          this.list = response.data.data;
-        })
-      .catch(function (error) {
-        console.log(error);
-      })
-    }
-  }
+    getSponsors() {
+       setInterval(() => {
+        axios
+          .get("http://0.0.0.0:8000/api/getMoviment", {
+            params: { "filters[type]": 2,}
+          })
+          .then((response) => {
+            this.listSponsors = response.data.sponsors != null ? response.data.sponsors : [];
+            this.qtyFirst = response.data.firstCounter;
+            this.qtySecond = response.data.secondCounter;
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+        $('.container-list').animate({ scrollTop: $('.container-list').scrollHeight}, 500);
+      }, 5000);
+    },
+    getVotes() {
+       setInterval(() => {
+        axios
+          .get("http://0.0.0.0:8000/api/getMoviment", {
+            params: { "filters[type]": 2,}
+          })
+          .then((response) => {
+            this.listVoutes = response.data.voutes != null ? response.data.voutes : [];
+            this.qtyFirst = response.data.firstCounter;
+            this.qtySecond = response.data.secondCounter;
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+        $('.container-list').animate({ scrollTop: $('.container-list').scrollHeight}, 500);
+      }, 5000);
+    },
+  },
 };
 </script>
