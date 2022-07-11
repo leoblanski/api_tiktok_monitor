@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-4 d-flex justify-content">
+  <div class="col-md-4 d-flex justify-content overflow-hidden">
     <div class="row">
       <img class="rounded" :src="img(image)" style="height: 80%" />
       <div class="d-flex justify-content-center card_count">
