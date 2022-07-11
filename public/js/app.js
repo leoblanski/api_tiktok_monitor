@@ -5376,22 +5376,57 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      list: [],
+      listSponsors: [],
+      qtyFirst: 0,
+      qtySecond: 0,
+      listVoutes: [],
       loading: true
     };
   },
   created: function created() {
-    this.getData();
+    this.getSponsors();
+    this.getVotes();
   },
   methods: {
-    getData: function getData() {
+    getSponsors: function getSponsors() {
       var _this = this;
 
-      axios.get("http://0.0.0.0:8000/api/getMoviment").then(function (response) {
-        _this.list = response.data.data;
-      })["catch"](function (error) {
-        console.log(error);
-      });
+      setInterval(function () {
+        axios.get("http://0.0.0.0:8000/api/getMoviment", {
+          params: {
+            "filters[type]": 2
+          }
+        }).then(function (response) {
+          _this.listSponsors = response.data.sponsors != null ? response.data.sponsors : [];
+          _this.qtyFirst = response.data.firstCounter;
+          _this.qtySecond = response.data.secondCounter;
+        })["catch"](function (error) {
+          console.log(error);
+        });
+        $('.container-list').animate({
+          scrollTop: $('.container-list').scrollHeight
+        }, 500);
+      }, 5000);
+    },
+    getVotes: function getVotes() {
+      var _this2 = this;
+
+      setInterval(function () {
+        axios.get("http://0.0.0.0:8000/api/getMoviment", {
+          params: {
+            "filters[type]": 2
+          }
+        }).then(function (response) {
+          _this2.listVoutes = response.data.voutes != null ? response.data.voutes : [];
+          _this2.qtyFirst = response.data.firstCounter;
+          _this2.qtySecond = response.data.secondCounter;
+        })["catch"](function (error) {
+          console.log(error);
+        });
+        $('.container-list').animate({
+          scrollTop: $('.container-list').scrollHeight
+        }, 500);
+      }, 5000);
     }
   }
 });
@@ -5411,6 +5446,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
+    title: {
+      type: String,
+      required: true
+    },
     list: {
       type: Array,
       required: true
@@ -5503,12 +5542,21 @@ var render = function render() {
     staticClass: "row"
   }, [_c("list", {
     attrs: {
-      list: _vm.list
+      title: "Top 3 Patrocinadores",
+      list: _vm.listSponsors
+    }
+  })], 1), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("list", {
+    attrs: {
+      title: "Top 3 Patrocinadores",
+      list: _vm.listVoutes
     }
   })], 1)]), _vm._v(" "), _c("panel-picture", {
     attrs: {
       name: "Lula",
-      image: "lula.png"
+      image: "lula.png",
+      qtyVotes: _vm.qtyFirst
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "col-md-1 duel"
@@ -5519,7 +5567,8 @@ var render = function render() {
   })]), _vm._v(" "), _c("panel-picture", {
     attrs: {
       name: "Bolsonaro",
-      image: "bolsonaro.png"
+      image: "bolsonaro.png",
+      qtyVotes: _vm.qtySecond
     }
   })], 1);
 };
@@ -5566,22 +5615,24 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("div", {}, [_c("div", {
+  return _c("div", [_c("div", {
     staticClass: "list-header"
-  }, [_vm._v("\n          Patrocinadores da Live\n        ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s(_vm.title))]), _vm._v(" "), _c("div", {
+    staticClass: "container-list"
+  }, [_c("div", {
     staticClass: "list-body"
   }, _vm._l(_vm.list, function (item) {
     return _c("tr", {
       key: item.id
     }, [_c("div", {
-      staticClass: "col-md-4 list-tile"
+      staticClass: "col-md-4 list-tile justify-content-end"
     }, [_c("img", {
       staticClass: "rounded-circle shadow-lg p-2",
       attrs: {
         src: item.url_picture,
         "data-holder-rendered": "true"
       }
-    })]), _vm._v(" "), _c("td", [_vm._v(_vm._s(item.username))])]);
+    })]), _vm._v(" "), _c("td", [_c("h3", [_vm._v(_vm._s(item.username))])])]);
   }), 0), _vm._v(" "), _c("div", {
     staticClass: "list-header"
   })])]);
@@ -5610,7 +5661,7 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "col-md-4 d-flex justify-content"
+    staticClass: "col-md-4 d-flex justify-content overflow-hidden"
   }, [_c("div", {
     staticClass: "row"
   }, [_c("img", {
@@ -10775,7 +10826,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.card_count {\n  margin-top: 10px;\n}\n.list-tile img{\n  width: 80px;\n  height: 80px;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card_count {\n  margin-top: 10px;\n}\n.container-list {\n  height: 200px;\n}\n.list-tile img {\n  width: 80px;\n  height: 80px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
