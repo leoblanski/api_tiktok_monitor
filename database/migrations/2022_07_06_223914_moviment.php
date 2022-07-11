@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('username');
             $table->string('url_picture');
+            $table->string('type');
             $table->string('qty_gift');
             $table->string('amount');
-            $table->integer('type');
+            $table->string('voute');
             $table->date('created_at');
             $table->date('updated_at');
         });
