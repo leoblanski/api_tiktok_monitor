@@ -13,16 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('moviment', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('url_picture');
-            $table->string('type');
-            $table->string('qty_gift');
-            $table->string('amount');
-            $table->string('voute');
-            $table->date('created_at');
-            $table->date('updated_at');
+            $table->integer('qty')->default(0);
+            $table->string('profile_picture');
+            $table->string('user');
+            $table->string('name');
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
         });
     }
 
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('moviment');
+        Schema::dropIfExists('likes');
     }
 };
