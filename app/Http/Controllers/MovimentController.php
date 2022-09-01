@@ -1,12 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\BaseModel;
+use App\Models\GiftModel;
+use App\Models\LikeModel;
 use Illuminate\Support\Facades\DB;
 
 use Exception;
 use Illuminate\Http\Request;
 
 use App\Models\Moviment;
+use App\Models\VoteModel;
 
 class MovimentController extends Controller
 {
@@ -18,21 +23,28 @@ class MovimentController extends Controller
             if (!$params) {
                 throw new Exception("params is required");
             }
-            $moviment = new Moviment();
+            
+            switch ($params['type']) {
+                case BaseModel::typeGift:
+                    $save = GiftModel::createNew($params);
+                    break;
+                case BaseModel::typeLike:
+                    $save = LikeModel::createNew($params);
+                    break;
+                case BaseModel::typeVoute:
+                    $save = VoteModel::createNew($params);
+                    break;
+                default:
+                    break;
+            }
 
-            $moviment->username = $params['username'];
-            $moviment->qty_gift = $params['qty_gift'];
-            $moviment->amount = $params['amount'];
-            $moviment->type = $params['type'];
-            $moviment->voute = $params['voute'];
-            $moviment->url_picture = $params['url_picture'];
 
-            if (!$moviment->save()) {
+            if (!$save) {
                 throw new Exception("Parameters not saved");
             }
 
             $response['status']  = 'success';
-            $response['message'] = 'Movimentação registrada com sucesso. ID: '.$moviment->id;
+            $response['message'] = 'Movimentação de '. BaseModel::typeLikesLabel[$params['type']] .'registrada com sucesso. ID: '.$save->id;
 
         } catch (Exception $e) {
             $response = [];
@@ -52,22 +64,26 @@ class MovimentController extends Controller
         }
         
         //Não estava sendo possível usar o Where, estava sempre resultando nulo, analisar e mudar querys.
-        $response['sponsors'] = Moviment::whereRaw("type = 1")
+        $response['gifts'] = GiftModel::selectRaw("SUM()")
             ->limit(3)
             ->get()
             ->toArray();
 
-        $response['votes'] = Moviment::whereRaw("type = 2")
+        $response['gifts'] = GiftModel::selectRaw("SUM()")
             ->limit(3)
             ->get()
             ->toArray();
 
-        $response['firstCounter'] = Moviment::selectRaw("id")
-            ->whereRaw('voute = "/lula"')
+        $response['votes'] = VoteModel::limit(3)
+            ->get()
+            ->toArray();
+
+        $response['firstCounter'] = VoteModel::selectRaw("id")
+            ->where("vote", "=", 1)
             ->count();
 
-        $response['secondCounter'] = Moviment::selectRaw("id")
-            ->whereRaw('voute = "/bolsonaro"')
+        $response['secondCounter'] = VoteModel::selectRaw("id")
+            ->where("vote", "=", 2)
             ->count();
 
         return response()->json($response);
