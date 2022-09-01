@@ -1,9 +1,9 @@
 <template>
   <div class="col-md-4 d-flex justify-content overflow-hidden">
     <div class="row">
-      <img class="rounded" :src="img(image)" style="height: 80%" />
+      <img class="rounded" :src="img(image)" style="height: 70%; width: 100%;" />
       <div class="d-flex justify-content-center card_count">
-        <h1 style="color: red">10&thinsp;</h1>
+        <h1 style="color: red">{{this.qtyVotes}}&thinsp;</h1>
         <h1>votos</h1>
       </div>
       <div class="d-flex justify-content-center">
@@ -28,6 +28,10 @@ export default {
       // default: '../../images/bolsonaro.png'
     },
     name: {
+      type: String,
+      required: true,
+    },
+    qtyVotes: {
       type: String,
       required: true,
     },

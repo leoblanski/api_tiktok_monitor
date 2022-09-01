@@ -5392,7 +5392,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       setInterval(function () {
-        axios.get("http://0.0.0.0:8000/api/getMoviment", {
+        axios.get("http://localhost:8989/api/getMoviment", {
           params: {
             "filters[type]": 2
           }
@@ -5412,7 +5412,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       setInterval(function () {
-        axios.get("http://0.0.0.0:8000/api/getMoviment", {
+        axios.get("http://localhost:8989/api/getMoviment", {
           params: {
             "filters[type]": 2
           }
@@ -5481,6 +5481,10 @@ __webpack_require__.r(__webpack_exports__);
 
     },
     name: {
+      type: String,
+      required: true
+    },
+    qtyVotes: {
       type: String,
       required: true
     }
@@ -5556,7 +5560,7 @@ var render = function render() {
     attrs: {
       name: "Lula",
       image: "lula.png",
-      qtyVotes: _vm.qtyFirst
+      qtyVotes: this.qtyFirst
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "col-md-1 duel"
@@ -5568,7 +5572,7 @@ var render = function render() {
     attrs: {
       name: "Bolsonaro",
       image: "bolsonaro.png",
-      qtyVotes: _vm.qtySecond
+      qtyVotes: this.qtySecond
     }
   })], 1);
 };
@@ -5582,7 +5586,7 @@ var staticRenderFns = [function () {
     staticStyle: {
       "margin-top": "20px"
     }
-  }, [_c("h4", [_vm._v("Reproduz meme do Bolsonaro")])]);
+  }, [_c("h2", [_vm._v("Reproduz meme do Bolsonaro")])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -5592,7 +5596,7 @@ var staticRenderFns = [function () {
     staticStyle: {
       "margin-top": "20px"
     }
-  }, [_c("h4", [_vm._v("Reproduz meme do Lula")])]);
+  }, [_c("h2", [_vm._v("Reproduz meme do Lula")])]);
 }];
 render._withStripped = true;
 
@@ -5667,28 +5671,24 @@ var render = function render() {
   }, [_c("img", {
     staticClass: "rounded",
     staticStyle: {
-      height: "80%"
+      height: "70%",
+      width: "100%"
     },
     attrs: {
       src: _vm.img(_vm.image)
     }
-  }), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "d-flex justify-content-center"
-  }, [_c("h2", [_vm._v('Digite "/' + _vm._s(_vm.name) + '" para votar')])])])]);
-};
-
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
+  }), _vm._v(" "), _c("div", {
     staticClass: "d-flex justify-content-center card_count"
   }, [_c("h1", {
     staticStyle: {
       color: "red"
     }
-  }, [_vm._v("10 ")]), _vm._v(" "), _c("h1", [_vm._v("votos")])]);
-}];
+  }, [_vm._v(_vm._s(this.qtyVotes) + " ")]), _vm._v(" "), _c("h1", [_vm._v("votos")])]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex justify-content-center"
+  }, [_c("h2", [_vm._v('Digite "/' + _vm._s(_vm.name) + '" para votar')])])])]);
+};
+
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -10802,7 +10802,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.duel {\n  position: absolute;\n  top: 60%;\n  right: 29%;\n}\n.duel img {\n  width: 100%;\n  height: 40%;\n}\n.gift img {\n  width: 60px;\n  height: 60px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.duel {\n  position: absolute;\n  top: 40%;\n  right: 29%;\n}\n.duel img {\n  width: 100%;\n  height: 40%;\n}\n.gift img {\n  width: 60px;\n  height: 60px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10826,7 +10826,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.card_count {\n  margin-top: 10px;\n}\n.container-list {\n  height: 200px;\n}\n.list-tile img {\n  width: 80px;\n  height: 80px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card_count {\n  margin-top: 10px;\n}\n.container-list {\n  height: 200px;\n}\n.list-tile img {\n  width: 80px;\n  height: 80px;\n}\n.list-header p{\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

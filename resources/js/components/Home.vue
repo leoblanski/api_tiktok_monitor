@@ -6,7 +6,7 @@
           <img :src="img('rose.png')" />
         </div>
         <div class="col" style="margin-top: 20px">
-          <h4>Reproduz meme do Bolsonaro</h4>
+          <h2>Reproduz meme do Bolsonaro</h2>
         </div>
       </div>
       <div class="row">
@@ -14,7 +14,7 @@
           <img :src="img('tiktok.png')" />
         </div>
         <div class="col" style="margin-top: 20px">
-          <h4>Reproduz meme do Lula</h4>
+          <h2>Reproduz meme do Lula</h2>
         </div>
       </div>
       <br />
@@ -25,18 +25,18 @@
         <list title="Top 3 Patrocinadores" :list="listVoutes" />
       </div>
     </div>
-    <panel-picture name="Lula" image="lula.png" :qtyVotes="qtyFirst"/>
+    <panel-picture name="Lula" image="lula.png" :qtyVotes="this.qtyFirst"/>
     <div class="col-md-1 duel">
       <img :src="img('x.png')" />
     </div>
-    <panel-picture name="Bolsonaro" image="bolsonaro.png" :qtyVotes="qtySecond" />
+    <panel-picture name="Bolsonaro" image="bolsonaro.png" :qtyVotes="this.qtySecond" />
   </div>
 </template>
 
 <style>
 .duel {
   position: absolute;
-  top: 60%;
+  top: 40%;
   right: 29%;
 }
 
@@ -72,7 +72,7 @@ export default {
     getSponsors() {
        setInterval(() => {
         axios
-          .get("http://0.0.0.0:8000/api/getMoviment", {
+          .get("http://localhost:8989/api/getMoviment", {
             params: { "filters[type]": 2,}
           })
           .then((response) => {
@@ -90,7 +90,7 @@ export default {
     getVotes() {
        setInterval(() => {
         axios
-          .get("http://0.0.0.0:8000/api/getMoviment", {
+          .get("http://localhost:8989/api/getMoviment", {
             params: { "filters[type]": 2,}
           })
           .then((response) => {

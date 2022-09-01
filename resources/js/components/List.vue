@@ -35,6 +35,10 @@
   width: 80px;
   height: 80px;
 }
+
+.list-header p{
+
+}
 </style>
 
 <script>
