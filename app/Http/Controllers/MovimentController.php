@@ -26,25 +26,25 @@ class MovimentController extends Controller
             
             switch ($params['type']) {
                 case BaseModel::typeGift:
-                    $save = GiftModel::createNew($params);
+                    $moviment = GiftModel::createNew($params);
                     break;
                 case BaseModel::typeLike:
-                    $save = LikeModel::createNew($params);
+                    $moviment = LikeModel::createNew($params);
                     break;
                 case BaseModel::typeVoute:
-                    $save = VoteModel::createNew($params);
+                    $moviment = VoteModel::createNew($params);
                     break;
                 default:
                     break;
             }
 
 
-            if (!$save) {
+            if (!$moviment->save()) {
                 throw new Exception("Parameters not saved");
             }
 
             $response['status']  = 'success';
-            $response['message'] = 'Movimentação de '. BaseModel::typeLikesLabel[$params['type']] .'registrada com sucesso. ID: '.$save->id;
+            $response['message'] = 'Movimentação de '. BaseModel::typeLikesLabel[$params['type']] .'registrada com sucesso. ID: '.$moviment->id;
 
         } catch (Exception $e) {
             $response = [];

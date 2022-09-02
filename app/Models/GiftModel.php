@@ -12,12 +12,12 @@ class GiftModel extends BaseModel
     public static function createNew(array $params) {
         $moviment = new GiftModel();
 
-        $moviment->username = $params['username'];
-        $moviment->qty_gift = $params['qty_gift'];
+        $moviment->user = $params['user'];
+        $moviment->name = $params['name'];
+        $moviment->qty = $params['qty'];
         $moviment->amount = $params['amount'];
-        $moviment->type = $params['type'];
-        $moviment->voute = $params['voute'];
-        $moviment->url_picture = $params['url_picture'];
+        $moviment->vote = $params['vote'];
+        $moviment->profile_picture = $params['profile_picture'];
     }
 
 }
