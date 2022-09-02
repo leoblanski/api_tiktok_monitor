@@ -64,13 +64,11 @@ class MovimentController extends Controller
         }
         
         //Não estava sendo possível usar o Where, estava sempre resultando nulo, analisar e mudar querys.
-        $response['gifts'] = GiftModel::selectRaw("SUM()")
-            ->limit(3)
+        $response['gifts'] = GiftModel::limit(3)
             ->get()
             ->toArray();
 
-        $response['gifts'] = GiftModel::selectRaw("SUM()")
-            ->limit(3)
+        $response['likes'] = LikeModel::limit(3)
             ->get()
             ->toArray();
 

@@ -16,8 +16,9 @@ class GiftModel extends BaseModel
         $moviment->name = $params['name'];
         $moviment->qty = $params['qty'];
         $moviment->amount = $params['amount'];
-        $moviment->vote = $params['vote'];
         $moviment->profile_picture = $params['profile_picture'];
+
+        return $moviment;
     }
 
 }

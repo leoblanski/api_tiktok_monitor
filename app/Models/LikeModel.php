@@ -16,5 +16,7 @@ class LikeModel extends BaseModel
         $moviment->profile_picture = $params['profile_picture'];
         $moviment->user = $params['user'];
         $moviment->name = $params['name'];
+
+        return $moviment;
     }
 }

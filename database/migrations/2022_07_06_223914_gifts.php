@@ -17,11 +17,10 @@ return new class extends Migration
             $table->id();
             $table->integer('qty')->default(0);
             $table->integer('amount')->default(0);
-            $table->string('profile_picture');
+            $table->string('profile_picture')->nullable();
             $table->string('user');
             $table->string('name');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
+            $table->timestamps();
         });
     }
 
