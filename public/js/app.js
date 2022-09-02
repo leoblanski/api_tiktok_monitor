@@ -5384,11 +5384,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.getSponsors();
-    this.getVotes();
+    this.getMoviments();
   },
   methods: {
-    getSponsors: function getSponsors() {
+    getMoviments: function getMoviments() {
       var _this = this;
 
       setInterval(function () {
@@ -5400,26 +5399,6 @@ __webpack_require__.r(__webpack_exports__);
           _this.listSponsors = response.data.sponsors != null ? response.data.sponsors : [];
           _this.qtyFirst = response.data.firstCounter;
           _this.qtySecond = response.data.secondCounter;
-        })["catch"](function (error) {
-          console.log(error);
-        });
-        $('.container-list').animate({
-          scrollTop: $('.container-list').scrollHeight
-        }, 500);
-      }, 5000);
-    },
-    getVotes: function getVotes() {
-      var _this2 = this;
-
-      setInterval(function () {
-        axios.get("http://localhost:8989/api/getMoviment", {
-          params: {
-            "filters[type]": 2
-          }
-        }).then(function (response) {
-          _this2.listVoutes = response.data.voutes != null ? response.data.voutes : [];
-          _this2.qtyFirst = response.data.firstCounter;
-          _this2.qtySecond = response.data.secondCounter;
         })["catch"](function (error) {
           console.log(error);
         });
@@ -5456,7 +5435,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    console.log(this.list);
+    console.log(this.list.length);
   }
 });
 
@@ -5485,7 +5464,7 @@ __webpack_require__.r(__webpack_exports__);
       required: true
     },
     qtyVotes: {
-      type: String,
+      type: Number,
       required: true
     }
   },
@@ -5542,11 +5521,11 @@ var render = function render() {
     attrs: {
       src: _vm.img("tiktok.png")
     }
-  })]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c("br"), _vm._v(" "), _c("div", {
+  })]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c("br"), _c("br"), _c("br"), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("list", {
     attrs: {
-      title: "Top 3 Patrocinadores",
+      title: "Top 3 Mais Curtidas",
       list: _vm.listSponsors
     }
   })], 1), _vm._v(" "), _c("div", {
@@ -10826,7 +10805,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.card_count {\n  margin-top: 10px;\n}\n.container-list {\n  height: 200px;\n}\n.list-tile img {\n  width: 80px;\n  height: 80px;\n}\n.list-header p{\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card_count {\n  margin-top: 10px;\n}\n.container-list {\n  height: 200px;\n}\n.list-tile img {\n  width: 80px;\n  height: 80px;\n}\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

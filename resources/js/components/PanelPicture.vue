@@ -32,7 +32,7 @@ export default {
       required: true,
     },
     qtyVotes: {
-      type: String,
+      type: Number,
       required: true,
     },
   },

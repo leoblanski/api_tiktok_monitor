@@ -36,9 +36,7 @@
   height: 80px;
 }
 
-.list-header p{
 
-}
 </style>
 
 <script>
@@ -54,7 +52,7 @@ export default {
     },
   },
   mounted() {
-    console.log(this.list);
+    console.log(this.list.length);
   },
 };
 </script>

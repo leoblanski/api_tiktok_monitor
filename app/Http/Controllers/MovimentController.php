@@ -44,7 +44,7 @@ class MovimentController extends Controller
             }
 
             $response['status']  = 'success';
-            $response['message'] = 'Movimentação de '. BaseModel::typeLikesLabel[$params['type']] .'registrada com sucesso. ID: '.$moviment->id;
+            $response['message'] = 'Movimentacao de '. BaseModel::typeLikesLabel[$params['type']] .' registrada com sucesso. ID: '.$moviment->id;
 
         } catch (Exception $e) {
             $response = [];
@@ -62,8 +62,7 @@ class MovimentController extends Controller
         if (!isset($filters['type']) || !$filters['type']) {
             throw new Exception("Parameter type is required");
         }
-        
-        //Não estava sendo possível usar o Where, estava sempre resultando nulo, analisar e mudar querys.
+
         $response['gifts'] = GiftModel::limit(3)
             ->get()
             ->toArray();
