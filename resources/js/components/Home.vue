@@ -17,9 +17,9 @@
           <h2>Reproduz meme do Lula</h2>
         </div>
       </div>
-      <br />
+      <br /><br /><br />
       <div class="row">
-        <list title="Top 3 Patrocinadores" :list="listSponsors" />
+        <list title="Top 3 Mais Curtidas" :list="listSponsors" />
       </div>
       <div class="row">
         <list title="Top 3 Patrocinadores" :list="listVoutes" />
@@ -65,11 +65,10 @@ export default {
     };
   },
   created() {
-    this.getSponsors();
-    this.getVotes();
+    this.getMoviments();
   },
   methods: {
-    getSponsors() {
+    getMoviments() {
        setInterval(() => {
         axios
           .get("http://localhost:8989/api/getMoviment", {
@@ -77,24 +76,6 @@ export default {
           })
           .then((response) => {
             this.listSponsors = response.data.sponsors != null ? response.data.sponsors : [];
-            this.qtyFirst = response.data.firstCounter;
-            this.qtySecond = response.data.secondCounter;
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-
-        $('.container-list').animate({ scrollTop: $('.container-list').scrollHeight}, 500);
-      }, 5000);
-    },
-    getVotes() {
-       setInterval(() => {
-        axios
-          .get("http://localhost:8989/api/getMoviment", {
-            params: { "filters[type]": 2,}
-          })
-          .then((response) => {
-            this.listVoutes = response.data.voutes != null ? response.data.voutes : [];
             this.qtyFirst = response.data.firstCounter;
             this.qtySecond = response.data.secondCounter;
           })
