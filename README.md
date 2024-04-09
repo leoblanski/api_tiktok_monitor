@@ -1,62 +1,51 @@
-## Sobre
+## About
 
-A ideia do sistema é a captura de interações que ocorrem em lives do TikTok.
+The idea of the system is to capture interactions that occur during TikTok live streams.
 
-As interações são monitoradas através de um projeto desenvolvido em python (https://github.com/leoblanski/tiktok_live_monitor_python), onde grava via API informações como de presentes doados, quantidade de likes, comentários, tempo de live e assim por diante.
+Interactions are monitored through a project developed in Python (https://github.com/leoblanski/tiktok_live_monitor_python), which records information via API such as donated gifts, number of likes, comments, live stream duration, and so on.
 
-Este repositório além da API, disponibilizará um painel onde será possível verificar essas informações em tempo real.
+In addition to the API, this repository will provide a dashboard where you can view this information in real-time.
 
+## Project Initialization
 
-## Inicialização do projeto
+### Step by Step
 
-### Passo a passo
-
-Faça o clone do projeto executando:
+Clone the project by executing:
 
 ```sh
 git clone https://github.com/leoblanski/tiktok_monitor.git
 ```
 
-Acesse o projeto
+Access the project
 
 ```sh
 cd tiktok_monitor
 ```
 
-Crie o Arquivo .env (Todas as configurações necessárias já estão no env.example)
+Create the .env file (All necessary configurations are already in the env.example)
 ```sh
 cp .env.example .env
 ```
 
-Suba os containers do projeto
+Start the project containers
 ```sh
 docker-compose up -d
 ```
 
-Acessar o container
+Access the container
 ```sh
 docker-compose exec app bash
 ```
 
-Instalar as dependências do projeto
+Install project dependencies
 ```sh
 composer install
 ```
 
-Gerar a key do projeto Laravel
+Generate the Laravel project key
 ```sh
 php artisan key:generate
 ```
 
-Execute as migrations do projeto
-```sh
-php artisan migrate
-```
-
-Para que seja possível o envio dos e-mails, precisa iniciar o Worker dos Jobs, para isso execute:
-```sh
-php artisan queue:work
-```
-
-Acesse o projeto
+Access the project
 [http://localhost:8989](http://localhost:8989)
